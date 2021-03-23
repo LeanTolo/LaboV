@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Human {
+public class Human {
 
     public String Name;
     public Integer Age;
     public Integer Weight;
+    public Integer AlcoholInBlood;
 
 }
