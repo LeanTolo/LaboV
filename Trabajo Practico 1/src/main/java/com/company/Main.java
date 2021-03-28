@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.models.*;
+import com.company.repository.DBAccess;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,6 +12,8 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
+
+        DBAccess db = new DBAccess();
 
         //get vikings
         List<Viking> vikings = uploadVikings();
@@ -45,6 +48,12 @@ public class Main {
         Human winner = new Human();
         winner = fightRand(vikingToFightRand,spartanToFightRand);
         System.out.println(winner.toString());
+
+        try{
+            db.insertWinners(winner.Name,winner.AlcoholInBlood);
+        }catch (Exception ex){
+            System.out.println(ex.toString());
+        }
 
     }
 
