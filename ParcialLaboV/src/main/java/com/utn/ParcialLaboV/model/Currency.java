@@ -1,7 +1,5 @@
 package com.utn.ParcialLaboV.model;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.AccessType;
@@ -11,11 +9,6 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "currencyType", visible = true)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = CurrencyEuro.class, name = "EURO"),
-        @JsonSubTypes.Type(value = CurrencyDolar.class, name = "DOLAR")
-})
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Currency {

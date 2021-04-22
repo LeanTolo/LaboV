@@ -6,7 +6,6 @@ import com.utn.ParcialLaboV.model.Persona;
 import com.utn.ParcialLaboV.model.Representante;
 import com.utn.ParcialLaboV.repository.IPersonaRepository;
 import com.utn.ParcialLaboV.service.interfaces.IPersonaService;
-import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,6 +45,24 @@ public class PersonaService implements IPersonaService {
     @Override
     public void delete(Long id) {
         personaRepository.deleteById(id);
+    }
+
+    @Override
+    public void addJugador(Long idRepresentante, Long idJugador) {
+        Jugador jugador;
+        Representante representante;
+        jugador = (Jugador)getById(idJugador);
+        representante = (Representante)getById(idRepresentante);
+        representante.getJugadores().add(jugador);
+        representante.setMontoTotal(representante.getMontoTotal());
+        representante.setPesoDeLaBoveda(representante.getPesoDeLaBoveda() + jugador.getCurrency().getMonto());
+        personaRepository.save(representante);
+    }
+
+    @Override
+    public List<Jugador> getAllJugadoresDeRepresentante(Long idRepresentante) {
+        Representante representante = (Representante) this.getById(idRepresentante);
+        return representante.getJugadores();
     }
 
 }

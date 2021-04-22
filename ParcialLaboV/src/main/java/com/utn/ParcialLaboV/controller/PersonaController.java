@@ -1,12 +1,7 @@
 package com.utn.ParcialLaboV.controller;
 
-import com.utn.ParcialLaboV.exception.PersonaNotExistsException;
-import com.utn.ParcialLaboV.model.Jugador;
 import com.utn.ParcialLaboV.model.Persona;
-import com.utn.ParcialLaboV.repository.IJugadorRepository;
-import com.utn.ParcialLaboV.service.implementation.JugadorService;
 import com.utn.ParcialLaboV.service.implementation.PersonaService;
-import com.utn.ParcialLaboV.service.implementation.RepresentanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +18,12 @@ public class PersonaController {
         this.personaService = personaService;
     }
 
-    @PostMapping
+    @PostMapping("")
     public void add(@RequestBody Persona persona){
         personaService.add(persona);
     }
 
-    @GetMapping
+    @GetMapping("")
     public List<Persona> getAll(){
         return personaService.getAll();
     }
@@ -43,4 +38,16 @@ public class PersonaController {
         personaService.delete(personaId);
     }
 
+    @PutMapping("/{representanteId/jugadores/{jugadorId}")
+    public void addJugador(@PathVariable Long representanteId, @PathVariable Long jugadorId){
+        personaService.addJugador(representanteId,jugadorId);
+    }
+
+    @GetMapping("/{representanteId}")
+    public void getAllJugadoresDeRepresentante(@PathVariable Long representanteId){
+        personaService.getAllJugadoresDeRepresentante(representanteId);
+    }
+
+
+    //PLOT TWIST, no lo probe, crucen los dedos muchachos!
 }

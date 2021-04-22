@@ -39,7 +39,7 @@ public class CurrencyService implements ICurrencyService {
     }
 
     @Override
-    public void delete(Long id) {
-        currencyRepository.deleteById(id);
+    public void delete(Currency currency) {
+        currencyRepository.delete(currency);
     }
 }

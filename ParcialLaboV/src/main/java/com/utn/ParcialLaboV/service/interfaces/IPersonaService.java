@@ -11,4 +11,6 @@ public interface IPersonaService {
     public List<Persona> getAll();
     public Persona getById(Long id);
     public void delete(Long id);
+    public void addJugador (Long idRepresentante, Long idJugador);
+    public List<Jugador> getAllJugadoresDeRepresentante(Long idRepresentante);
 }

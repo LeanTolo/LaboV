@@ -1,9 +1,7 @@
 package com.utn.ParcialLaboV.controller;
 
 import com.utn.ParcialLaboV.model.Currency;
-import com.utn.ParcialLaboV.model.Persona;
 import com.utn.ParcialLaboV.service.implementation.CurrencyService;
-import com.utn.ParcialLaboV.service.implementation.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +18,12 @@ public class CurrencyController {
         this.currencyService = currencyService;
     }
 
-    @PostMapping
+    @PostMapping("")
     public void add(@RequestBody Currency currency){
         currencyService.add(currency);
     }
 
-    @GetMapping
+    @GetMapping("")
     public List<Currency> getAll(){
         return currencyService.getAll();
     }
@@ -35,9 +33,9 @@ public class CurrencyController {
         return currencyService.getById(currencyId);
     }
 
-    @DeleteMapping("/{currencyId}")
-    public void delete(@PathVariable Long currencyId){
-        currencyService.delete(currencyId);
+    @DeleteMapping("")
+    public void delete(@RequestBody Currency currency){
+        currencyService.delete(currency);
     }
 
 }

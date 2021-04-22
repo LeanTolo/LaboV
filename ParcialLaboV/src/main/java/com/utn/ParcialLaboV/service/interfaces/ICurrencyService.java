@@ -9,5 +9,5 @@ public interface ICurrencyService {
     public void add(Currency currency);
     public List<Currency> getAll();
     public Currency getById(Long id);
-    public void delete(Long id);
+    public void delete(Currency currency);
 }
